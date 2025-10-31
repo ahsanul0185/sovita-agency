@@ -131,7 +131,7 @@ export default function Select_Duration({
                 }}
                 className={`w-full cursor-pointer py-5 px-5 rounded-md text-lg font-medium transition-all duration-200 ${
                   isSelected
-                    ? "bg-[#007bf4] text-white border-2 border-[#007bf4]"
+                    ? "bg-blue-600 text-white border-2 border-[#007bf4]"
                     : "border-2 border-[#007bf4]/30 text-white hover:border-[#007bf4] hover:bg-[#007bf4]/5"
                 }`}
               >
