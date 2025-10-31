@@ -215,3 +215,40 @@ export function Mobile_Menu() {
     </header>
   );
 }
+
+
+
+export function NavWithoutLink({}) {
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
+  return (
+    <header className={`hidden lg:block  sticky top-0 z-[99] ${ isSticky ? "bg-black" : "g-transparent"} transition-colors duration-300`} id="navbar">
+      <nav>
+        <div className='container mt-5 h-20 grid grid-cols-[1fr_2fr] gap-10 items-center'>
+          <div className='logo pl-4'>
+            <Link href='/'>
+              <Image src='/logo.svg' alt='Logo' className='logo_img cover' width={200} height={44} />
+            </Link>
+          </div>
+          <div className='links pr-4  justify-self-end'>
+            <ul className='list-none menu flex items-center gap-6'>
+              <li>
+                <Main_button button_title='☏ 07 44 31 33 49' button_url='/request-quote'  />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+  );
+}

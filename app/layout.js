@@ -1,6 +1,6 @@
 "use client";
 import "./globals.css";
-import Main_Nav from "../component/nav";
+import Main_Nav, { NavWithoutLink } from "../component/nav";
 import { Mobile_Menu } from "../component/nav";
 import { Footer } from "../component/footer";
 import Head from "next/head";
@@ -16,6 +16,9 @@ import Script from "next/script";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
+
+  const hideHeadFoot = pathname.split("/")[1]  === "get-started";
+  const isCheckoutPage = pathname.split("/")[1] === "checkout";
 
   useEffect(() => {
     AOS.init({ duration: 500, once: true });
@@ -122,6 +125,7 @@ export default function RootLayout({ children }) {
     elements.forEach((el) => observer.observe(el));
   }, [pathname]);
 
+
   return (
     <>
       <html lang="en">
@@ -151,10 +155,10 @@ export default function RootLayout({ children }) {
             ></iframe>
           </noscript>
 
-          <Main_Nav />
-          <Mobile_Menu />
+          {hideHeadFoot ? <NavWithoutLink/> : isCheckoutPage ? "" : <Main_Nav/>}
+          {!isCheckoutPage && <Mobile_Menu />}
           {children}
-          <Footer />
+          {!hideHeadFoot && !isCheckoutPage && <Footer />}
         </body>
       </html>
     </>

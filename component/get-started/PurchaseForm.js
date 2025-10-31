@@ -141,16 +141,34 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
           />
         </div>
 
-        <div className="mt-6 flex text-sm items-center gap-2">
+        <div className="mt-6 flex text-sm  gap-2">
             <button onClick={() => setSelectedPlan(null)} className="w-1/2 cursor-pointer rounded py-3 border hover:bg-white/5 border-white/20 ">Cancel</button>
             <button
           type="submit"
+          disabled={isLoading}
           className=" w-1/2 bg-blue-500 cursor-pointer hover:bg-blue-600 text-white font-medium py-3 rounded transition-all  cursor-pointerhover:shadow-blue-500/30"
         >
-          Proceed to Payment ({halfPrice}€)
+          {/* Proceed to Payment ({halfPrice}€) */}
+          {isLoading ? <Loader /> : `Proceed to Payment (${halfPrice}€)`}
         </button>
         </div>
       </form>
     </div>
   );
+}
+
+
+const Loader = () => {
+   return <div>
+
+<div
+  class="inline-block h-5 w-5 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+  >
+  <span
+    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+    >Loading...
+    </span>
+</div>
+
+   </div>
 }

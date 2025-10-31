@@ -72,6 +72,11 @@ export default function Select_Duration({ planName, monthlyPrice, annualSetupFee
               {planName} - <span className="text-[#007bf4]">{monthlyPrice}€ HT/mois</span>
             </p>
           </div>
+          <div className="mt-8 p-4 bg-gray-900/50 border border-gray-800 rounded-lg">
+          <p className="text-sm text-gray-400 text-center">
+            Le prix inclut {annualSetupFee}€ HT de frais de création + l'abonnement mensuel
+          </p>
+        </div>
         </div>
 
         <div className="space-y-4">
@@ -85,13 +90,30 @@ export default function Select_Duration({ planName, monthlyPrice, annualSetupFee
             );
             
             return (
-              <button
+              // <button
+              //   key={button.id}
+              //   onClick={() => {
+              //     setSelectedDuration(button.id);
+              //     handlePayment(button.id);
+              //   }}
+              //   className={`w-full cursor-pointer py-5 px-8 rounded-xl text-lg font-medium transition-all duration-200 ${
+              //     isSelected
+              //       ? 'bg-[#007bf4] text-white border-2 border-[#007bf4]'
+              //       : 'border-2 border-[#007bf4]/30 text-white hover:border-[#007bf4] hover:bg-[#007bf4]/5'
+              //   }`}
+              // >
+              //   <div className="flex justify-between items-center">
+              //     <span>{button.label}</span>
+              //     <span className="font-bold">{pricing.total.toFixed(2)}€ HT</span>
+              //   </div>
+              // </button>
+              <div
                 key={button.id}
                 onClick={() => {
                   setSelectedDuration(button.id);
                   handlePayment(button.id);
                 }}
-                className={`w-full cursor-pointer py-5 px-8 rounded-xl text-lg font-medium transition-all duration-200 ${
+                className={`w-full cursor-pointer py-5 px-5 rounded-md text-lg font-medium transition-all duration-200 ${
                   isSelected
                     ? 'bg-[#007bf4] text-white border-2 border-[#007bf4]'
                     : 'border-2 border-[#007bf4]/30 text-white hover:border-[#007bf4] hover:bg-[#007bf4]/5'
@@ -99,18 +121,17 @@ export default function Select_Duration({ planName, monthlyPrice, annualSetupFee
               >
                 <div className="flex justify-between items-center">
                   <span>{button.label}</span>
-                  <span className="font-bold">{pricing.total.toFixed(2)}€ HT</span>
+                  <button className="flex gap-3 text-sm py-2 px-3 rounded cursor-pointer hover:bg-blue-600 duration-200 bg-main-blue">
+                    <span>Choisir la formule</span>
+                    <span className="">{pricing.total.toFixed(2)}€ HT</span>
+                  </button>
                 </div>
-              </button>
+              </div>
             );
           })}
         </div>
 
-        <div className="mt-8 p-4 bg-gray-900/50 border border-gray-800 rounded-lg">
-          <p className="text-sm text-gray-400 text-center">
-            Le prix inclut {annualSetupFee}€ HT de frais de création + l'abonnement mensuel
-          </p>
-        </div>
+        
       <button onClick={() => setSelectedPlan(null)} className="mt-6 px-4 group py-2 cursor-pointer hover:bg-blue-600 bg-main-blue flex gap-2 items-center rounded"><ArrowLeft className="group-hover:-translate-x-1 duration-200" />Go back</button>
       </div>
     </div>
