@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://sovita.agency
+
+# Sitemaps
+Sitemap: https://sovita.agency/sitemap.xml
