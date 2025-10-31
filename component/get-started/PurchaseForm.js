@@ -18,6 +18,9 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.firstName === "" || formData.lastName === "" || formData.email === "" || formData.phone === "") {
+        return
+    }
     const payloadData = {
         name : `${formData.firstName} ${formData.lastName}`,
         email : formData.email,
@@ -100,6 +103,7 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
               value={formData.firstName}
               onChange={handleChange}
               placeholder="John"
+              required
               className="w-full bg-transparent border border-white/20 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
             />
           </div>
@@ -112,6 +116,7 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
               value={formData.lastName}
               onChange={handleChange}
               placeholder="Doe"
+              required
               className="w-full bg-transparent border border-white/20 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
             />
           </div>
@@ -124,6 +129,7 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            required
             placeholder="your@email.com"
             className="w-full bg-transparent border border-white/20 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           />
@@ -136,6 +142,7 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
+            required
             placeholder="+1234567890"
             className="w-full bg-transparent border border-white/20 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           />
