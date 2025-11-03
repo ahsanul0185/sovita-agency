@@ -159,6 +159,13 @@ export default function RootLayout({ children }) {
           {!isCheckoutPage && <Mobile_Menu />}
           {children}
           {!hideHeadFoot && !isCheckoutPage && <Footer />}
+
+                  {/* Tidio Script here */}
+        <Script
+          src="//code.tidio.co/nkisumk7vhucuw7sukdff1xownqwhoxe.js"
+          strategy="afterInteractive"
+        />
+
         </body>
       </html>
     </>
