@@ -250,7 +250,7 @@ async function getItemByName(access_token, itemName, orgId) {
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { name, email, phone, totalAmount, plan, duration, addons } = body;
+    const { name, email, phone, totalAmount, plan, company_name, addons } = body;
 
     console.log("Request Body:", body);
 
@@ -361,6 +361,7 @@ export async function POST(req) {
             display_name: name,
             email,
             phone,
+            company_name
           }),
         }
       );

@@ -5,6 +5,7 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
     firstName: "",
     lastName: "",
     email: "",
+    companyName : "",
     phone: "",
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +25,7 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
     const payloadData = {
         name : `${formData.firstName} ${formData.lastName}`,
         email : formData.email,
+        company_name : formData.companyName,
         phone : formData.phone,
         totalAmount : halfPrice,
         plan : selectedPlan?.name
@@ -80,7 +82,7 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
         </div>
 
         <div className="flex justify-between items-center">
-          <p className="text-gray-400">Amount to Pay Now (50%)</p>
+          <p className="text-gray-400">Payer une partie aujourd'hui</p>
           <p className="text-xl font-semibold text-blue-400">{halfPrice}€</p>
         </div>
       </div>
@@ -91,12 +93,12 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
         className="w-full max-w-3xl  p-8 rounded-md border border-white/10 shadow-lg backdrop-blur-md"
       >
         <h2 className="text-2xl font-semibold mb-6 text-center text-main-blue">
-          Confirm Your Details
+          Paiement de votre commande
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm mb-1 text-gray-300">First Name</label>
+            <label className="block text-sm mb-1 text-gray-300">Nom</label>
             <input
               type="text"
               name="firstName"
@@ -109,7 +111,7 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
           </div>
 
           <div>
-            <label className="block text-sm mb-1 text-gray-300">Last Name</label>
+            <label className="block text-sm mb-1 text-gray-300">Prénom</label>
             <input
               type="text"
               name="lastName"
@@ -136,7 +138,19 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
         </div>
 
         <div className="mt-4">
-          <label className="block text-sm mb-1 text-gray-300">Phone</label>
+          <label className="block text-sm mb-1 text-gray-300">Nom de l’entreprise (facultatif)</label>
+          <input
+            type="text"
+            name="companyName"
+            value={formData.companyName}
+            onChange={handleChange}
+            placeholder=""
+            className="w-full bg-transparent border border-white/20 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          />
+        </div>
+
+        <div className="mt-4">
+          <label className="block text-sm mb-1 text-gray-300">Téléphone</label>
           <input
             type="tel"
             name="phone"
@@ -149,14 +163,14 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
         </div>
 
         <div className="mt-6 flex text-sm  gap-2">
-            <button onClick={() => setSelectedPlan(null)} className="w-1/2 cursor-pointer rounded py-3 border hover:bg-white/5 border-white/20 ">Cancel</button>
+            {/* <button onClick={() => setSelectedPlan(null)} className="w-1/2 cursor-pointer rounded py-3 border hover:bg-white/5 border-white/20 ">Cancel</button> */}
             <button
           type="submit"
           disabled={isLoading}
-          className=" w-1/2 bg-blue-500 cursor-pointer hover:bg-blue-600 text-white font-medium py-3 rounded transition-all  cursor-pointerhover:shadow-blue-500/30"
+          className="w-full bg-blue-500 cursor-pointer hover:bg-blue-600 text-white font-medium py-3 rounded transition-all  cursor-pointerhover:shadow-blue-500/30"
         >
           {/* Proceed to Payment ({halfPrice}€) */}
-          {isLoading ? <Loader /> : `Proceed to Payment (${halfPrice}€)`}
+          {isLoading ? <Loader /> : `Payer (${halfPrice}€)`}
         </button>
         </div>
       </form>
