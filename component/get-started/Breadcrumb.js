@@ -51,7 +51,7 @@ export default function Breadcrumb() {
   const paths = pathname.split("/").filter(Boolean);
 
   // Don’t show breadcrumb if it’s only "get-started"
-  if (paths.length === 1 && paths[0] === "get-started") return null;
+  if ((paths.length === 1 && paths[0] === "get-started") || paths[1] === "customer-info") return null;
 
   const lastSegment = paths[paths.length - 1];
 

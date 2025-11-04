@@ -2,6 +2,7 @@
 
 import Purchase_form from "@/component/get-started/PurchaseForm";
 import SitePlanCard from "@/component/get-started/SitePlanCard";
+import ProtectedRoute from "@/component/ProtectedRoute";
 import { useState } from "react";
 
 export const plans = [
@@ -55,6 +56,7 @@ export default function Achat_vitrine() {
   };
 
   return (
+    <ProtectedRoute>
     <div className="max-w-7xl mx-auto">
       {!selectedPlan ? <div>
         <div className="text-center mb-16">
@@ -77,5 +79,6 @@ export default function Achat_vitrine() {
       </div>
       </div> : <Purchase_form selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan}/>}
     </div>
+    </ProtectedRoute>
   );
 }

@@ -2,6 +2,7 @@
 
 import PriceCard from "@/component/get-started/PriceCard";
 import Select_Duration from "@/component/get-started/SelectDuration";
+import ProtectedRoute from "@/component/ProtectedRoute";
 import { useState } from "react";
 
 const plans = [
@@ -95,6 +96,7 @@ export default function LocationEcommerce() {
   };
 
   return (
+    <ProtectedRoute>
     <div className="min-h-screen bg-[#0a0a0a] py-16 px-6">
       {!selectedPlan ? (
         <div className="max-w-7xl mx-auto">
@@ -127,5 +129,6 @@ export default function LocationEcommerce() {
         />
       )}
     </div>
+    </ProtectedRoute>
   );
 }
