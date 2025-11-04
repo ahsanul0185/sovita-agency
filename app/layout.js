@@ -1,3 +1,178 @@
+// "use client";
+// import "./globals.css";
+// import Main_Nav, { NavWithoutLink } from "../component/nav";
+// import { Mobile_Menu } from "../component/nav";
+// import { Footer } from "../component/footer";
+// import Head from "next/head";
+
+// import { useEffect } from "react";
+// import { usePathname } from "next/navigation";
+// import gsap from "gsap";
+// import ScrollTrigger from "gsap/dist/ScrollTrigger";
+// gsap.registerPlugin(ScrollTrigger);
+// import AOS from "aos";
+// import "aos/dist/aos.css";
+// import Script from "next/script";
+
+// export default function RootLayout({ children }) {
+//   const pathname = usePathname();
+
+//   const hideHeadFoot = pathname.split("/")[1]  === "get-started";
+//   const isCheckoutPage = pathname.split("/")[1] === "checkout";
+
+//   useEffect(() => {
+//     AOS.init({ duration: 500, once: true });
+//   }, [pathname]);
+
+//   useEffect(() => {
+//     const headings = document.querySelectorAll("h1, h2, h3");
+
+//     headings.forEach((el) => {
+//       if (el.classList.contains("animated-heading")) return;
+
+//       el.classList.add("animated-heading");
+
+//       // Parse original DOM to separate colored content
+//       const coloredSpan = el.querySelector(".colored");
+//       const fullText = el.textContent || "";
+//       const coloredText = coloredSpan?.textContent || "";
+//       const coloredStart = coloredSpan
+//         ? fullText.indexOf(coloredText)
+//         : fullText.length;
+
+//       const colorClass = coloredSpan?.dataset.color || "blue"; // default color
+//       el.innerHTML = ""; // Clear
+
+//       fullText.split("").forEach((char, i) => {
+//         let span = document.createElement("span");
+//         if (char == "\\") {
+//           //use '\' (backslash) to break in to new line
+//           span = document.createElement("br");
+//         } else {
+//           span.textContent = char === " " ? "\u00A0" : char;
+//           span.style.transitionDelay = `${i * 40}ms`;
+//           span.classList.add("split-char");
+//           if (i >= coloredStart && i < coloredStart + coloredText.length) {
+//             span.classList.add(`text-main-${colorClass}`);
+//           }
+//         }
+//         el.appendChild(span);
+//       });
+
+//       // IntersectionObserver animation
+//       const observer = new IntersectionObserver(
+//         ([entry]) => {
+//           if (entry.isIntersecting) {
+//             el.classList.add("visible");
+//             observer.unobserve(el);
+//           }
+//         },
+//         { threshold: 0.1 }
+//       );
+
+//       observer.observe(el);
+//     });
+
+//     return () => {
+//       document
+//         .querySelectorAll("h1, h2, h3")
+//         .forEach((el) => el.classList.remove("animated-heading", "visible"));
+//     };
+//   }, [pathname]);
+
+//   useEffect(() => {
+//     const ctx = gsap.context(() => {
+//       const white_sections = document.querySelectorAll(".white_on_scroll");
+//       white_sections.forEach((section) => {
+//         ScrollTrigger.create({
+//           trigger: section,
+//           start: "top center",
+//           end: "bottom center",
+//           toggleActions: "play reverse play reverse",
+//           // markers: true,
+//           onEnter: () => {
+//             section.classList.add("active");
+//           },
+//           onLeave: () => {
+//             section.classList.remove("active");
+//           },
+//           onLeaveBack: () => {
+//             section.classList.remove("active");
+//           },
+//           onEnterBack: () => {
+//             section.classList.add("active");
+//           },
+//         });
+//         return () => ctx.revert();
+//       });
+//     });
+//   }, [pathname]);
+
+//   useEffect(() => {
+//     const elements = document.querySelectorAll(".fade_in_slide_up");
+//     const observer = new IntersectionObserver(
+//       (entries) => {
+//         entries.forEach((entry) => {
+//           if (entry.isIntersecting) {
+//             entry.target.classList.add("visible");
+//             observer.unobserve(entry.target);
+//           }
+//         });
+//       },
+//       { threshold: 0.2 }
+//     );
+
+//     elements.forEach((el) => observer.observe(el));
+//   }, [pathname]);
+
+
+//   return (
+//     <>
+//       <html lang="en">
+//         <Head>
+//           <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+//         </Head>
+
+//         {/* Google Tag Manager */}
+//         <Script id="gtm-script" strategy="afterInteractive">
+//           {`
+//     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+//     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+//     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+//     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+//     })(window,document,'script','dataLayer','GTM-TZKN2MSW');
+//   `}
+//         </Script>
+
+//         <body>
+//           {/* Google Tag Manager (noscript) */}
+//           <noscript>
+//             <iframe
+//               src="https://www.googletagmanager.com/ns.html?id=GTM-TZKN2MSW"
+//               height="0"
+//               width="0"
+//               style={{ display: "none", visibility: "hidden" }}
+//             ></iframe>
+//           </noscript>
+
+//           {hideHeadFoot ? <NavWithoutLink/> : isCheckoutPage ? "" : <Main_Nav/>}
+//           {!isCheckoutPage && <Mobile_Menu />}
+//           {children}
+//           {!hideHeadFoot && !isCheckoutPage && <Footer />}
+
+//                   {/* Tidio Script here */}
+//         <Script
+//           src="//code.tidio.co/nkisumk7vhucuw7sukdff1xownqwhoxe.js"
+//           strategy="afterInteractive"
+//         />
+
+//         </body>
+//       </html>
+//     </>
+//   );
+// }
+
+
 "use client";
 import "./globals.css";
 import Main_Nav, { NavWithoutLink } from "../component/nav";
@@ -17,7 +192,7 @@ import Script from "next/script";
 export default function RootLayout({ children }) {
   const pathname = usePathname();
 
-  const hideHeadFoot = pathname.split("/")[1]  === "get-started";
+  const hideHeadFoot = pathname.split("/")[1] === "get-started";
   const isCheckoutPage = pathname.split("/")[1] === "checkout";
 
   useEffect(() => {
@@ -32,7 +207,6 @@ export default function RootLayout({ children }) {
 
       el.classList.add("animated-heading");
 
-      // Parse original DOM to separate colored content
       const coloredSpan = el.querySelector(".colored");
       const fullText = el.textContent || "";
       const coloredText = coloredSpan?.textContent || "";
@@ -40,13 +214,12 @@ export default function RootLayout({ children }) {
         ? fullText.indexOf(coloredText)
         : fullText.length;
 
-      const colorClass = coloredSpan?.dataset.color || "blue"; // default color
-      el.innerHTML = ""; // Clear
+      const colorClass = coloredSpan?.dataset.color || "blue";
+      el.innerHTML = "";
 
       fullText.split("").forEach((char, i) => {
         let span = document.createElement("span");
         if (char == "\\") {
-          //use '\' (backslash) to break in to new line
           span = document.createElement("br");
         } else {
           span.textContent = char === " " ? "\u00A0" : char;
@@ -59,7 +232,6 @@ export default function RootLayout({ children }) {
         el.appendChild(span);
       });
 
-      // IntersectionObserver animation
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -89,23 +261,14 @@ export default function RootLayout({ children }) {
           start: "top center",
           end: "bottom center",
           toggleActions: "play reverse play reverse",
-          // markers: true,
-          onEnter: () => {
-            section.classList.add("active");
-          },
-          onLeave: () => {
-            section.classList.remove("active");
-          },
-          onLeaveBack: () => {
-            section.classList.remove("active");
-          },
-          onEnterBack: () => {
-            section.classList.add("active");
-          },
+          onEnter: () => section.classList.add("active"),
+          onLeave: () => section.classList.remove("active"),
+          onLeaveBack: () => section.classList.remove("active"),
+          onEnterBack: () => section.classList.add("active"),
         });
-        return () => ctx.revert();
       });
     });
+    return () => ctx.revert();
   }, [pathname]);
 
   useEffect(() => {
@@ -125,23 +288,47 @@ export default function RootLayout({ children }) {
     elements.forEach((el) => observer.observe(el));
   }, [pathname]);
 
-
   return (
     <>
       <html lang="en">
         <Head>
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+
+          {/* Meta Pixel Code */}
+          <Script id="meta-pixel" strategy="afterInteractive">
+            {`
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1215128113454588');
+              fbq('track', 'PageView');
+            `}
+          </Script>
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              src="https://www.facebook.com/tr?id=1215128113454588&ev=PageView&noscript=1"
+            />
+          </noscript>
+          {/* End Meta Pixel Code */}
         </Head>
 
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TZKN2MSW');
-  `}
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-TZKN2MSW');
+          `}
         </Script>
 
         <body>
@@ -155,17 +342,22 @@ export default function RootLayout({ children }) {
             ></iframe>
           </noscript>
 
-          {hideHeadFoot ? <NavWithoutLink/> : isCheckoutPage ? "" : <Main_Nav/>}
+          {hideHeadFoot ? (
+            <NavWithoutLink />
+          ) : isCheckoutPage ? (
+            ""
+          ) : (
+            <Main_Nav />
+          )}
           {!isCheckoutPage && <Mobile_Menu />}
           {children}
           {!hideHeadFoot && !isCheckoutPage && <Footer />}
 
-                  {/* Tidio Script here */}
-        <Script
-          src="//code.tidio.co/nkisumk7vhucuw7sukdff1xownqwhoxe.js"
-          strategy="afterInteractive"
-        />
-
+          {/* Tidio Script */}
+          <Script
+            src="//code.tidio.co/nkisumk7vhucuw7sukdff1xownqwhoxe.js"
+            strategy="afterInteractive"
+          />
         </body>
       </html>
     </>

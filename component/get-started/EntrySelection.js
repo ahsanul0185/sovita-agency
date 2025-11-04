@@ -26,8 +26,8 @@ export default function EntrySelection() {
       </div>
 
       <div className="space-y-4">
-        <button
-          onClick={() => handleNavigation("/get-started/location")}
+        <div
+          
           className="w-full cursor-pointer text-white font-medium text-lg py-5 px-8 rounded-xl border-2 border-[#007bf4]/30 hover:border-[#007bf4] hover:bg-[#007bf4]/5 transition-all duration-200 flex items-center justify-center gap-3"
         >
           <svg
@@ -44,11 +44,13 @@ export default function EntrySelection() {
             />
           </svg>
           Louer mon site internet (à partir 8€ HT/mois)
-        </button>
+          <button onClick={() => handleNavigation("/get-started/location")} className="px-5 py-2 rounded ml-4 cursor-pointer hover:bg-main-blue/80 bg-main-blue text-sm">Sélectionner </button>
 
-        <button
-          onClick={() => handleNavigation("/get-started/achat")}
-          className="w-full cursor-pointer text-white font-medium text-lg py-5 px-8 rounded-xl border-2 border-[#007bf4]/30 hover:border-[#007bf4] hover:bg-[#007bf4]/5 transition-all duration-200 flex items-center justify-center gap-3"
+        </div>
+
+        <div
+          
+          className="w-full cursor-pointer text-white font-medium text-lg py-5 px-8 rounded-xl border-2 border-[#007bf4]/30 hoverborder-[#007bf4] hover:bg-[#007bf4]/5 transition-all duration-200 flex items-center justify-center gap-3"
         >
           <svg
             className="w-6 h-6"
@@ -64,7 +66,8 @@ export default function EntrySelection() {
           />
         </svg>
           Acheter mon site internet (à partir 249€ HT)
-        </button>
+          <button onClick={() => handleNavigation("/get-started/achat")} className="px-5 py-2 rounded ml-4 cursor-pointer hover:bg-main-blue/80 bg-main-blue text-sm">Sélectionner </button>
+        </div>
       </div>
     </div>
   );
