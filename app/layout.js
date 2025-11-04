@@ -293,8 +293,9 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <Head>
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        </Head>
 
-          {/* Meta Pixel Code */}
+        {/* Meta Pixel Code */}
           <Script id="meta-pixel" strategy="afterInteractive">
             {`
               !function(f,b,e,v,n,t,s)
@@ -318,7 +319,6 @@ export default function RootLayout({ children }) {
             />
           </noscript>
           {/* End Meta Pixel Code */}
-        </Head>
 
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
