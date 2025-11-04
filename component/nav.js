@@ -79,6 +79,9 @@ export default function Main_Nav({}) {
               <li>
                 <Main_button button_title='Contactez-nous' button_url='/request-quote'  />
               </li>
+              <li>
+                <Main_button button_title='Nous créons pour vous votre site' button_url='/get-started'  />
+              </li>
             </ul>
           </div>
         </div>

@@ -392,7 +392,7 @@ export async function POST(req) {
     const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
 
     const dueDate = new Date(today);
-    dueDate.setDate(dueDate.getDate() + 3);
+    dueDate.setDate(dueDate.getDate() + 7);
     const dueDateFormatted = dueDate.toISOString().split('T')[0]
 
     // Prepare line items using the retrieved item data
