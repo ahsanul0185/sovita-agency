@@ -16,6 +16,8 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
   };
 
   const halfPrice = selectedPlan?.price ? (selectedPlan.price / 2).toFixed(2) : 0;
+  const vat = (selectedPlan?.price * 0.2).toFixed(2);
+  const toBePaid = (parseFloat(vat) + parseFloat(halfPrice)).toFixed(2)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
         email : formData.email,
         company_name : formData.companyName,
         phone : formData.phone,
-        totalAmount : halfPrice,
+        totalAmount : toBePaid,
         plan : selectedPlan?.name
     }
 
@@ -81,9 +83,18 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
           <p className="text-xl font-medium text-white">{selectedPlan?.price}€ HT</p>
         </div>
 
+
+        {/* Show 20% VAT */}
+<div className="flex justify-between items-center">
+  <p className="text-gray-400">TVA (20%)</p>
+  <p className="text-xl font-medium text-white">
+    {vat}€
+  </p>
+</div>
+
         <div className="flex justify-between items-center">
           <p className="text-gray-400">Payer une partie aujourd'hui</p>
-          <p className="text-xl font-semibold text-blue-400">{halfPrice}€</p>
+          <p className="text-xl font-semibold text-blue-400">{toBePaid}€</p>
         </div>
       </div>
 
@@ -170,7 +181,7 @@ export default function Purchase_form({ selectedPlan, setSelectedPlan }) {
           className="w-full bg-blue-500 cursor-pointer hover:bg-blue-600 text-white font-medium py-3 rounded transition-all  cursor-pointerhover:shadow-blue-500/30"
         >
           {/* Proceed to Payment ({halfPrice}€) */}
-          {isLoading ? <Loader /> : `Payer (${halfPrice}€)`}
+          {isLoading ? <Loader /> : `Payer (${toBePaid}€)`}
         </button>
         </div>
       </form>
